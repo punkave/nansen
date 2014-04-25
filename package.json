@@ -1,0 +1,19 @@
+{
+  "name": "nansen",
+  "version": "0.0.0",
+  "description": "api consumption framework module ",
+  "main": "nansen.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/punkave/nansen.git"
+  },
+  "author": "P'unk Ave",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/punkave/nansen/issues"
+  },
+  "homepage": "https://github.com/punkave/nansen"
+}
