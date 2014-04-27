@@ -1,0 +1,23 @@
+[
+{ "options":{
+    "url": "http://api.openweathermap.org/data/2.1/find/name?q=philadelphia",
+    "headers": {
+        "User-Agent": "request"
+    	} 
+	}
+}, 
+{ "options":{
+    "url": "http://api.openweathermap.org/data/2.1/find/name?q=charlottesville",
+    "headers": {
+        "User-Agent": "request"
+    	} 
+	}
+}, 
+{ "options":{
+    "url": "http://api.openweathermap.org/data/2.1/find/name?q=harrisburg",
+    "headers": {
+        "User-Agent": "request"
+    	} 
+	}
+}
+]
