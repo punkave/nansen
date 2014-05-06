@@ -1,4 +1,4 @@
-nansen
+api-processor
 ======
 
-api consumption framework module 
+node.js app for processing one or a sequence of apis
