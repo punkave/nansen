@@ -9,7 +9,7 @@ commands
   .parse(process.argv);
 
 if(!commands.config){
-	console.log('Nansen requires config to process APIs, see --help.');
+	console.log('Nansen requires a config to process APIs, see --help.');
 
 }
 else{
@@ -22,7 +22,8 @@ else{
 }
 
 
-var global = [];
+var global_params = [];
+
 
 
 function processAPIs(config){
@@ -34,38 +35,61 @@ var APIs = APIs.map(function (api) {
 });
 
 function callAPIs (APIs, data) {
-  var API = APIs.shift();
+	  
+	  var API = APIs.shift();
 
-  	if(API.get_data){
-  		getValue(API.get_data.get, data);
-  		setValue(API.get_data.set, API.options, getValue(API.get_data.get, data));
-  	}
+	  if(API.set_params_from_previous) {
+	  	getValue(API.set_params_from_previous, data);
+	  	setValue(API.set_params_from_previous, API.options, getValue(API.set_params_from_previous.get, data));
+	  }
 
-  	if(API.set_from_global) {
-  		setFromGlobal(API.set_from_global, API.options);
-  	}
+	  if(API.set_rest_params_from_previous) {
+	  	setRestParamsFromPrevious(API.set_rest_params_from_previous, API.options, data);
+	  }
 
-  request(API.options, function(err, res, body) { 
-  	console.log(body);
+	  if(API.set_params_from_global) {
+	  	setFromGlobal(API.set_params_from_global, API.options);
+	  }
 
-  	body = JSON.parse(body);
-    if( APIs.length ) {
+	  if(API.set_rest_params_from_global) {
+	  	setRestParamsFromGlobal(API.set_rest_params_from_global, API.options);
+	  }
 
-    	if(API.set_to_global) {
-    		setToGlobal(API.set_to_global, body);
-    	}
+	  if(API.sub_process){
+	  	console.log("entering sub_process");
+	  	console.log(APIs);
 
-      callAPIs (APIs, body);
-    }
-  });
-}
+	  	//processAPIs(API.sub_process);
+	  }
 
-callAPIs(APIs);
+	  request(API.options, function(err, res, body) { 
+	  	
+	  	if(!err)	{
 
+	  		//for testing
+	  		console.log(API.options.url);
+	  		console.log("success");
+	  		console.log(body);
+	  		//
+	  	
+	  		body = JSON.parse(body);
+	    	
+	    	if( APIs.length ) {
+
+	    		if(API.save_params_to_global) {
+	    			saveToGlobal(API.save_params_to_global, body);
+	    		}
+
+	      		callAPIs (APIs, body);
+	    	}
+		}
+	  });
+	}
+
+	callAPIs(APIs);
 }
 
 function getValue(path, data) {
-
 	
 	var keys = path.split(".");
 
@@ -75,7 +99,6 @@ function getValue(path, data) {
 
 	return data;
 }
-
 
 function setValue(path, options, value) {
 
@@ -89,16 +112,16 @@ function setValue(path, options, value) {
 	opValue[keys[keys.length - 1]] = value;
 }
 
-function setToGlobal(options, data) {
+function saveToGlobal(options, data) {
 
 
 
 	for (var key in options) {
 
-        global[key] =  getValue(options[key], data);
+        global_params[key] =  getValue(options[key], data);
     }
 
-    //console.log(options);
+    //console.log("saved params to global " + getValue(options[key], data));
 }
 
 function setFromGlobal(options, data) {
@@ -107,9 +130,26 @@ function setFromGlobal(options, data) {
 
 	for (var key in options) {
 
-        setValue(options[key], data, global[key]);
+        setValue(options[key], data, global_params[key]);
     }
 
-    //console.log(global);
+    //console.log(global_params);
 }
 
+function setRestParamsFromPrevious(restParams, options, data) {
+
+      for (var key in restParams) {
+
+        options.url =  options.url.replace(key,  getValue(restParams[key], data));
+    }
+    //    console.log(options.url);
+}
+
+function setRestParamsFromGlobal(restParams, options) {
+
+      for (var key in restParams) {
+
+        options.url =  options.url.replace(key, global_params[restParams[key]]);
+    }
+        //console.log(global_params);
+}
