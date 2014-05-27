@@ -34,6 +34,8 @@ var APIs = APIs.map(function (api) {
   return api;
 });
 
+
+
 function callAPIs (APIs, data) {
 	  
 	  var API = APIs.shift();
@@ -57,8 +59,10 @@ function callAPIs (APIs, data) {
 
 	  if(API.sub_process){
 	  	console.log("entering sub_process");
-	  	console.log(APIs);
+	  	//console.log(APIs);
 
+	  	var APIs =  API.sub_process.concat(APIs);
+	  	//console.log(APIs);
 	  	//processAPIs(API.sub_process);
 	  }
 
@@ -69,7 +73,7 @@ function callAPIs (APIs, data) {
 	  		//for testing
 	  		console.log(API.options.url);
 	  		console.log("success");
-	  		console.log(body);
+	  		//console.log(body);
 	  		//
 	  	
 	  		body = JSON.parse(body);
