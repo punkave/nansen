@@ -1,4 +1,4 @@
-api-processor
+nansen
 ======
 
-node.js app for processing one or a sequence of apis
+node.js module for processing one or many APIs sequentially

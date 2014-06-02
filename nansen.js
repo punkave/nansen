@@ -2,7 +2,7 @@ var commands = require('commander');
 var request = require('request');
 var bunyan = require('bunyan');
 
-var log = bunyan.createLogger({name: "Nansen"});
+var log = bunyan.createLogger({name: "nansen"});
 var config;
 var global_params = [];
 
@@ -12,7 +12,7 @@ commands
   .parse(process.argv);
 
 if(!commands.config){
-	console.log('Nansen requires a config to process APIs, see --help.');
+	console.log('nansen requires a config to process APIs, see --help.');
 
 }
 else{
@@ -25,7 +25,7 @@ else{
 }
 
 
-log.info("Nansen has started.");
+log.info("nansen has started.");
 
 function processAPIs(config) {
 
@@ -56,7 +56,7 @@ function callAPIs (APIs, data) {
 	  	setRestParamsFromGlobal(API.set_rest_params_from_global, API.options);
 	  }
 
-	  if(API.sub_process  || data.sub_process) { 
+	  if(API.sub_process) { 
 	  	//console.log("entering sub_process");
 	  	//console.log(APIs);
 
