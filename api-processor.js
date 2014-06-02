@@ -1,7 +1,10 @@
 var commands = require('commander');
 var request = require('request');
+var bunyan = require('bunyan');
 
+var log = bunyan.createLogger({name: "Nansen"});
 var config;
+var global_params = [];
 
 commands
   .version('0.0.0')
@@ -22,19 +25,15 @@ else{
 }
 
 
-var global_params = [];
+log.info("Nansen has started.");
 
-
-
-function processAPIs(config){
+function processAPIs(config) {
 
 
 var APIs = config;
 var APIs = APIs.map(function (api) {
   return api;
 });
-
-
 
 function callAPIs (APIs, data) {
 	  
@@ -57,11 +56,11 @@ function callAPIs (APIs, data) {
 	  	setRestParamsFromGlobal(API.set_rest_params_from_global, API.options);
 	  }
 
-	  if(API.sub_process){
-	  	console.log("entering sub_process");
+	  if(API.sub_process  || data.sub_process) { 
+	  	//console.log("entering sub_process");
 	  	//console.log(APIs);
 
-	  	var APIs =  API.sub_process.concat(APIs);
+	  	APIs = API.sub_process.concat(APIs);
 	  	//console.log(APIs);
 	  	//processAPIs(API.sub_process);
 	  }

@@ -18,6 +18,7 @@
   },
   "dependencies": {
     "request": "~2.33.0",
-    "commander": "~2.2.0"
+    "commander": "~2.2.0",
+    "bunyan": "~0.22.3"
   }
 }
