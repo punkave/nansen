@@ -17,8 +17,6 @@
     "url": "https://github.com/punkave/nansen/issues"
   },
   "dependencies": {
-    "request": "~2.33.0",
-    "commander": "~2.2.0",
-    "bunyan": "~0.22.3"
+    "request": "~2.33.0"
   }
 }
