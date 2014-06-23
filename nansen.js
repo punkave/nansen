@@ -8,7 +8,7 @@ module.exports = {
    /**
    * Processes a list of APIs for the given options
    *
-   * @param  {obj} options
+   * @param  {array} options
    * @param  {function} callback
    */
   processAPIs: function(options, callback) {
@@ -29,12 +29,24 @@ module.exports = {
 		  var API = APIs.shift();
 
 		  if(API.set_params_from_previous) {
-		  	getValue(API.set_params_from_previous, data);
-		  	setValue(API.set_params_from_previous, API.options, getValue(API.set_params_from_previous.get, data));
+		  	try{
+		  		getValue(API.set_params_from_previous, data);
+		  		setValue(API.set_params_from_previous, API.options, getValue(API.set_params_from_previous.get, data));
+		  	}
+		  	catch(e){
+		  		errorMessage = "Error setting param value from responce: " + e;
+		    	callback(errorMessage);
+		  	}
 		  }
 
 		  if(API.set_rest_params_from_previous) {
-		  	setRestParamsFromPrevious(API.set_rest_params_from_previous, API.options, data);
+		  	try{
+		  		setRestParamsFromPrevious(API.set_rest_params_from_previous, API.options, data);
+		  	}
+		  	catch(e){
+		  		errorMessage = "Error setting rest value from responce: " + e;
+		    	callback(errorMessage);
+		  	}
 		  }
 
 		  if(API.set_params_from_global) {
@@ -69,7 +81,13 @@ module.exports = {
 		    	if(APIs.length) {
 
 		    		if(API.save_params_to_global) {
-		    			saveToGlobal(API.save_params_to_global, body);
+		    			try{
+		    				saveToGlobal(API.save_params_to_global, body);
+		    			}
+		    			catch(e){
+		    				errorMessage = "Error saving value to global from responce: " + e;
+		    				callback(errorMessage);
+		    			}
 		    		}
 
 		    		if(API.sub_process) { 
