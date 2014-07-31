@@ -30,8 +30,7 @@ module.exports = {
 
 		  if(API.set_params_from_previous) {
 		  	try{
-		  		getValue(API.set_params_from_previous, data);
-		  		setValue(API.set_params_from_previous, API.options, getValue(API.set_params_from_previous.get, data));
+		  		setValue(API.set_params_from_previous.set, API.options, getValue(API.set_params_from_previous.get, data));
 		  	}
 		  	catch(e){
 		  		errorMessage = "Error setting param value from responce: " + e;
@@ -78,6 +77,14 @@ module.exports = {
 					callback(errorMessage);
 				}
 		    	
+				if(body) {
+		  			if(body.sub_process){
+		  				infoMessage = "Adding subprocess of " + body.sub_process.length + " APIs to process queue";
+		  				callback(infoMessage);
+		  				APIs = body.sub_process.concat(APIs);
+		  			}
+		  		}
+
 		    	if(APIs.length) {
 
 		    		if(API.save_params_to_global) {
@@ -96,13 +103,13 @@ module.exports = {
 		  				APIs = API.sub_process.concat(APIs);
 		  			}
 
-		  			if(data) {
-		  				if(data.sub_process){
-		  					infoMessage = "Adding subprocess of " + data.sub_process.length + " APIs to process queue";
-		  					callback(infoMessage);
-		  					APIs = data.sub_process.concat(APIs);
-		  				}
-		  			}
+		  			// if(data) {
+		  			// 	if(data.sub_process){
+		  			// 		infoMessage = "Adding subprocess of " + data.sub_process.length + " APIs to process queue";
+		  			// 		callback(infoMessage);
+		  			// 		APIs = data.sub_process.concat(APIs);
+		  			// 	}
+		  			// }
 
 		      		callAPIs (APIs, body);
 		    	}
@@ -123,13 +130,23 @@ module.exports = {
 
 function getValue(path, data) {
 	
-	var keys = path.split(".");
-
-	for (var i = 0; i < keys.length; i++){
-		data = data[keys[i]];
+	if(path == '')
+	{
+		return JSON.stringify(data);
 	}
+	else {
 
-	return data;
+		var keys = path.split(".");
+
+		for (var i = 0; i < keys.length; i++){
+			data = data[keys[i]];
+		}
+
+	//console.log("PATH: " + path); 
+	//console.log("DATA: " + data);
+
+		return data;
+	}
 }
 
 function setValue(path, options, value) {
