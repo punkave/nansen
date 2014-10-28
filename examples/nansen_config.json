@@ -1,0 +1,26 @@
+{ "inital_req":{
+    "url": "http://example",
+    "headers": {
+        "User-Agent": "example",
+    	},
+    "entry_point": "example"
+    },
+    "get_config": {
+    	"auth": {
+    		"username": "example", 
+    		"password": "example" 
+    	},
+    	"url_base": "https://example",
+    	"url_rest_params": ["example"],
+    	"url_query_params": {"example": "example"}
+	},
+	"post_config": {
+		"url_base": "http://example",
+		"params": ["example", "example", "example"],
+		"headers": {
+        "User-Agent": "example",
+    	}	
+	},
+	"item_id": "example",
+	"item_name": "example" 
+}
