@@ -43,10 +43,10 @@ If a request is successful, we can validate the response here. Errors can be ass
 Complete is the last step for each `request`.  Here, we can translate and format the data we need from the response.  For the `setup` and `get` steps, we should pass something different in the callback.  
 
 
-    Setup
+* Setup
 >The array of items to be looped over.  The subsequent `get` will run for each item in the array, and each individual item is passed to the the request function in `get`.
   
-    Get
+* Get
 >The data from response which we want to POST.
         
 By default, the entire response is passed.
