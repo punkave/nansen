@@ -12,18 +12,18 @@ nansen config="./cmmi-glowcaps.js"
 ## Request Model
 The three required objects represent the order of request operations for the api consumption.
 
-### `1. Setup`
+#### `1. Setup`
 An intial request to obtain a collection items for the subsequent GET and POST requests.
-### `2. Get`
+#### `2. Get`
 A GET request made for each item obtained during `setup`.  Each request is made with partially unique parameters available in the item object. 
-### `3. Post`
+#### `3. Post`
 A POST request made for each successful `Get`.  Each POST can also be made with unique parameters avialble in the item.
 
 
 ## Configuration Options
 Each of the requests above can be configured with these options.  
 
-### `request`
+#### `request`
 - `{}`
 - `function(item, callback)`
 - `function(item, response, callback)`
@@ -31,13 +31,13 @@ Each of the requests above can be configured with these options.
 
 The configuration of the HTTP request follows the node-request module schema which can be found [here](https://github.com/request/request#requestoptions-callback).  You can simply pass an object of options. Or, for `Get`, and `Post` requests, provide a function and access the `item` or the  `response` from the previous request.  
 
-### `validate`
+#### `validate`
 - `['json']`
 - `function(response, callback)`
 
 If a request is successful, we can validate the response here. Errors can be asserted, by passing them in the callback, but modification to the response is not allowed.  For basic format validation, nansen provides built in functions for `json` and `xml`, which can be passed as string in an array.
 
-### `complete`
+#### `complete`
 - `function(response, callback)`
 
 Complete is the last step for each `request`.  Here, we can translate and format the data we need from the response.  For the `setup` and `get` steps, we should pass something different in the callback.  
