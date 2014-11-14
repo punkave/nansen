@@ -44,10 +44,10 @@ Complete is the last step for each `request`.  Here, we can translate and format
 
 
     Setup
-        The array of items to be looped over.  The subsequent `get` will run for each item in the array, and each individual item is passed to the the request function in `get`.
+>The array of items to be looped over.  The subsequent `get` will run for each item in the array, and each individual item is passed to the the request function in `get`.
   
-      Get
-        The data from response which we want to POST.
+    Get
+>The data from response which we want to POST.
         
 By default, the entire response is passed.
 
