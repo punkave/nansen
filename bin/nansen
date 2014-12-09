@@ -1,0 +1,32 @@
+#!/usr/bin/env node
+
+var program = require('commander');
+
+require('shelljs/global');
+require('colors');
+
+
+var nansenCommand = require('../lib/nansen')(program);
+
+program
+    .command('*')
+    .usage('<commandName>')
+    .description('Initiate and manage a Nansen task')
+    .action(function(commandName, options) {
+      console.log(commandName, 'Running the task [1/1]');
+      return true;
+    });
+
+
+program.on('--help', function() {
+  apostropheCommand.help();
+});
+
+if (process.argv.length <= 2) {
+  // no args, so display help
+  program.help();
+}
+
+program
+	.version('0.0.10')
+	.parse(process.argv);

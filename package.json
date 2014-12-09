@@ -1,0 +1,17 @@
+{
+  "name": "nansen",
+  "version": "0.0.1",
+  "description": "Nansen is a tool for consuming APIs.",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/punkave/nansen"
+  },
+  "author": "P'unk Avenue",
+  "license": "BSD",
+  "dependencies": {
+    "commander": "x",
+    "request": "x",
+    "async": "x"
+  }
+}
