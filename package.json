@@ -12,6 +12,8 @@
   "dependencies": {
     "commander": "x",
     "request": "x",
-    "async": "x"
+    "async": "x",
+    "lodash": "x",
+    "colors": "x"
   }
 }
