@@ -22,13 +22,12 @@ var config = {
 			if (res && res.paths) {
 				callback(null, res);
 			} else {
-				callback("Error: No paths in Setup response.");
+				callback("Validate Error: No 'paths' object in Setup response.");
 			}
 		},
 		complete: function(res, callback) {
 
 			res = JSON.parse(res);
-
 			var items = [];
 
 			res.paths.forEach(function(p, i){
@@ -41,12 +40,11 @@ var config = {
 	},
 
 	get: {
-
-		request: function(data, callback ) {
+		request: function(item, callback ) {
 
 			callback(null, {
 				method: 'GET',
-				uri: 'http://demo0841709.mockable.io/' + data.path
+				uri: 'http://demo0841709.mockable.io/' + item.path
 			});
 		},
 		validate: ['json']
