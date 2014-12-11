@@ -34,7 +34,7 @@ var config = {
 				items.push({ "path": p.path });
 			});
 
-			callback(null, {"items": items});
+			callback(null, items);
 		}
 
 	},
@@ -60,6 +60,18 @@ var config = {
 }
 
 
+
+
+
 nansen.job(config);
 
 nansen.run();
+
+
+
+
+
+
+
+
+
