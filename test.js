@@ -52,9 +52,14 @@ var config = {
 
 	post: {
 
-		request: {
-			method: 'POST',
-			uri: 'http://demo0841709.mockable.io/post'
+		request: function(response, callback){
+
+
+			callback(null, {
+				method: 'POST',
+				uri: 'http://demo0841709.mockable.io/post'
+			});
+
 		}
 	}
 }
