@@ -8,5 +8,6 @@ pids
 *.seed
 
 node_modules
+examples
 
 .DS_Store
