@@ -52,8 +52,7 @@ var config = {
 
 	post: {
 
-		request: function(response, callback){
-
+		request: function(item, response, callback){
 
 			callback(null, {
 				method: 'POST',
