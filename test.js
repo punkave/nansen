@@ -42,6 +42,10 @@ var config = {
 	get: {
 		request: function(item, callback ) {
 
+			if (item.path === 'path1' ) {
+				return callback(null);
+			}
+
 			callback(null, {
 				method: 'GET',
 				uri: 'http://demo0841709.mockable.io/' + item.path
@@ -52,7 +56,7 @@ var config = {
 
 	post: {
 
-		request: function(item, response, callback){
+		request: function(item,response, callback){
 
 			callback(null, {
 				method: 'POST',
