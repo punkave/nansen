@@ -6,7 +6,7 @@ Nansen is a node.js module for processing APIs.  This is the proposed configurat
 The configuration for each application is a javascript file that exports a function with required properties `setup`, `get`, and `post`.  Nansen is run from the command line, and initiating a new api task will be as simple as passing the configration into nansen.
 
 ```bash
-nansen config="./cmmi-glowcaps.js"
+nansen ./cmmi-glowcaps.js
 ```
 
 ## Request Model
@@ -60,6 +60,7 @@ modules.exports = {
     // Options
     name: 'MovesConnector',
     verbose: true,
+    debug: true,
 
     // 1.  Setup request configuration
     self.setup: {
@@ -135,7 +136,7 @@ modules.exports = {
         // access this response, and the original item
         // by using the three agrument deleration.
         request: function(item, response, callback) {
-            
+
             callback(null, {
                 method: 'post',
                 url: 'https://my.waytohealth.upenn.edu/pedometer',
