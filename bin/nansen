@@ -24,7 +24,7 @@ var debug = function(){
 program
   .usage('[options] <config_file>')
   .option('-v, --version', 'output of the version number', version)
-  .option('-V, --verbose', 'Verbose Logging', verbose),
+  .option('-V, --verbose', 'Verbose Logging', verbose)
   .option('-d --debug', 'Log debug info', debug);
 
 
