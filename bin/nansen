@@ -2,6 +2,7 @@
 
 var program = require('commander'),
     fs = require('fs'),
+    path = require('path'),
     nansen = require('../lib/nansen'),
     pjson = require('../package.json'),
     colors = require('colors');
@@ -36,7 +37,7 @@ if (process.argv.length <= 2) {
   for(var i=2; i < process.argv.length; i++) {
     if (process.argv[i].indexOf('-') == 0) { continue; }
     try{
-      var config = require(process.argv[i]);
+      var config = require(path.dirname(fs.realpathSync(process.argv[i])) + '/' + process.argv[i].split('/').pop());
       nansen.job(config, options);
     } catch(e){
       console.log('');
