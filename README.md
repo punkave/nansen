@@ -55,23 +55,21 @@ Example Configuration File
 ----
 ```javascript
 // Configuration File for 'Moves Connector'
-modules.export = function(options) {
-    var self = this;
+modules.exports = {
 
-    // Global properties
-    self.name: 'MovesConnector';
-    self.clientAuthKey = 'ai39adfaasdf8u';
-    self.studySlug = 'pedometer';
+    // Options
+    name: 'MovesConnector',
+    verbose: true,
 
     // 1.  Setup request configuration
-    self.setup = {
+    self.setup: {
     
         // The 'request' object follows the schema of node-request options.
         request: {
             method: 'get',
-            url: 'https://my.waytohealth.upenn.edu/' + self.studySlug,
+            url: 'https://my.waytohealth.upenn.edu/pedometer',
             headers: {
-                'Client-Auth-Key': self.clientAuthKey;
+                'Client-Auth-Key': '<key>';
             },
         },
         
@@ -91,10 +89,10 @@ modules.export = function(options) {
             // pass the array of items to 'Get'
             callback(null, JSON.parse(res.items));
         },
-    };
+    },
 
     // 2.  Get request configuration
-    self.get = {
+    get: {
 
         // Request can also be a function that is
         // provided with *item* and returns the
@@ -127,25 +125,25 @@ modules.export = function(options) {
             // Format the response data for POST
             callback(null, JSON.parse(res.data));
         }
-    };
+    },
 
     // 3.  Post request configuration
-    post = {
+    post:  {
     
         // For this request, we want to POST the entire
         // response from our previous GET.  We can 
         // access this response, and the original item
         // by using the three agrument deleration.
         request: function(item, response, callback) {
+            
             callback(null, {
                 method: 'post',
-                url: 'https://my.waytohealth.upenn.edu/' + self.studySlug,
+                url: 'https://my.waytohealth.upenn.edu/pedometer',
                 params: {
                     study_user_id: item.study_user_id,
                     source_id: item.source_id,
-                    connector_group: self.name,
-                    as_of: moment('YYYY-mm-dd'),
-                    info: res
+                    connector_group: 'MovesConnector',
+                    info: response
                 },
                 headers: {
                     'Authorization': 'Bearer ' + item.apidata.access_token
@@ -154,7 +152,7 @@ modules.export = function(options) {
         },
 
 
-    };
+    },
 
 }
 
