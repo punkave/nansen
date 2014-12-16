@@ -61,7 +61,7 @@ modules.exports = {
     name: 'MovesConnector',
     verbose: true,              // Log the requests for each item
     debug: true,                // Log the request responses and other extra info
-    parallel: true,             // Execute the GET and POST requests for all items in parallel
+    parallel: true,             // Execute all items in parallel
 
 
     // 1.  Setup request configuration
@@ -98,8 +98,8 @@ modules.exports = {
     get: {
 
         // Request can also be a function that is
-        // provided with *item* and returns the
-        // *request* object in the callback.  
+        // provided with <item> and returns the
+        // <request> object in the callback.  
         // This allows us to pass unique data for
         // each item request. 
         request: function(item, callback) {
@@ -135,7 +135,7 @@ modules.exports = {
     
         // For this request, we want to POST the entire
         // response from our previous GET.  We can 
-        // access this response, and the original item
+        // access this response, and the original <item>
         // by using the three agrument deleration.
         request: function(item, response, callback) {
 
