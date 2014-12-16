@@ -16,7 +16,8 @@
     "lodash": "x",
     "extend": "x",
     "moment": "x",
-    "colors": "x"
+    "colors": "x",
+    "progress": "x"
   },
   "bin": {
     "nansen": "bin/nansen"

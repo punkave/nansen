@@ -12,19 +12,18 @@ var options = {};
 
 
 var version = function(){
-  console.log('');
-  console.log('\tnansen version '+ pjson.version);
+  console.log('\n\tnansen version '+ pjson.version);
 }
-var set = function(option, param) {
-  options[option] = param;
+var set = function(param, value) {
+  options[param] = value;
 }
 
 program
   .usage('[options] <config_file>')
   .option('-v, --version', 'output of the version number', version)
-  .option('-V, --verbose', 'Verbose Logging', set('verbose', true))
-  .option('-d --debug', 'Log debug info', set('debug', true))
-  .option('-p --parallel', 'Process Get and Post requests in Parallel', set('parallel', true));
+  .option('-V, --verbose', 'Verbose Logging', function(){ set('verbose', true) })
+  .option('-d --debug', 'Log debug info', function(){ set('debug', true) })
+  .option('-p --parallel', 'Process Get and Post requests in Parallel', function(){ set('parallel', true) });
 
 
 program.parse(process.argv);
@@ -40,10 +39,8 @@ if (process.argv.length <= 2) {
       var config = require(path.dirname(fs.realpathSync(process.argv[i])) + '/' + process.argv[i].split('/').pop());
       nansen.job(config, options);
     } catch(e){
-      console.log('');
-      console.log(("Error reading config file ").red + process.argv[i]);
-      console.log(e);
-      console.log('');
+      console.log(("\nError reading config file ").red + process.argv[i]);
+      console.log("\n" + e + "\n");
     }
   }
   if (nansen.ready()) nansen.run();
