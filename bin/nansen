@@ -14,18 +14,16 @@ var version = function(){
   console.log('');
   console.log('\tnansen version '+ pjson.version);
 }
-var verbose = function(){
-  options.verbose = true;
-}
-var debug = function(){
-  options.debug = true;
+var set = function(option, param) {
+  options[option] = param;
 }
 
 program
   .usage('[options] <config_file>')
   .option('-v, --version', 'output of the version number', version)
-  .option('-V, --verbose', 'Verbose Logging', verbose)
-  .option('-d --debug', 'Log debug info', debug);
+  .option('-V, --verbose', 'Verbose Logging', set('verbose', true))
+  .option('-d --debug', 'Log debug info', set('debug', true))
+  .option('-p --parallel', 'Process Get and Post requests in Parallel', set('parallel', true));
 
 
 program.parse(process.argv);
