@@ -59,8 +59,10 @@ modules.exports = {
 
     // Options
     name: 'MovesConnector',
-    verbose: true,
-    debug: true,
+    verbose: true,              // Log the requests for each item
+    debug: true,                // Log the request responses and other extra info
+    parallel: true,             // Execute the GET and POST requests for all items in parallel
+
 
     // 1.  Setup request configuration
     self.setup: {
