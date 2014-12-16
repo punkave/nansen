@@ -1,32 +1,51 @@
 #!/usr/bin/env node
 
-var program = require('commander');
-
-require('shelljs/global');
-require('colors');
-
-
-var nansenCommand = require('../lib/nansen')(program);
-
-program
-    .command('*')
-    .usage('<commandName>')
-    .description('Initiate and manage a Nansen task')
-    .action(function(commandName, options) {
-      console.log(commandName, 'Running the task [1/1]');
-      return true;
-    });
+var program = require('commander'),
+    fs = require('fs'),
+    nansen = require('../lib/nansen'),
+    pjson = require('../package.json'),
+    colors = require('colors');
 
 
-program.on('--help', function() {
-  apostropheCommand.help();
-});
+var options = {};
 
-if (process.argv.length <= 2) {
-  // no args, so display help
-  program.help();
+
+var version = function(){
+  console.log('');
+  console.log('\tnansen version '+ pjson.version);
+}
+var verbose = function(){
+  options.verbose = true;
+}
+var debug = function(){
+  options.debug = true;
 }
 
 program
-	.version('0.0.10')
-	.parse(process.argv);
+  .usage('[options] <config_file>')
+  .option('-v, --version', 'output of the version number', version)
+  .option('-V, --verbose', 'Verbose Logging', verbose),
+  .option('-d --debug', 'Log debug info', debug);
+
+
+program.parse(process.argv);
+
+if (process.argv.length <= 2) {
+  program.help();
+
+} else if (process.argv.length > 2){
+
+  for(var i=2; i < process.argv.length; i++) {
+    if (process.argv[i].indexOf('-') == 0) { continue; }
+    try{
+      var config = require(process.argv[i]);
+      nansen.job(config, options);
+    } catch(e){
+      console.log('');
+      console.log(("Error reading config file ").red + process.argv[i]);
+      console.log(e);
+      console.log('');
+    }
+  }
+  if (nansen.ready()) nansen.run();
+}

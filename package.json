@@ -14,6 +14,7 @@
     "request": "x",
     "async": "x",
     "lodash": "x",
+    "extend": "x",
     "moment": "x",
     "colors": "x"
   }
