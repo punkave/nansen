@@ -1,6 +1,6 @@
 # Nansen
 
-Nansen is a node.js module for processing APIs.  This is the proposed configuration file spec.
+Nansen is a node.js module for processing APIs.
 
 - [Configuration](#config)
 - [Request Model](#request)
