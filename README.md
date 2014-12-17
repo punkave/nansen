@@ -1,15 +1,21 @@
-# Nansen Configuration
+# Nansen
 
 Nansen is a node.js module for processing APIs.  This is the proposed configuration file spec.
 
-## Config File
+- [Configuration](#config)
+- [Request Model](#request)
+- [Options](#options)
+- [Example](#example)
+
+
+## <a name="config"></a>Configuration File
 The configuration for each application is a javascript file that exports a function with required properties `setup`, `get`, and `post`.  Nansen is run from the command line, and initiating a new api task will be as simple as passing the configration into nansen.
 
 ```bash
 nansen ./cmmi-glowcaps.js
 ```
 
-## Request Model
+## <a name="request"></a>Request Model
 The three required objects represent the order of request operations for the api consumption.
 
 #### `1. Setup`
@@ -20,8 +26,9 @@ A GET request made for each item obtained during `setup`.  Each request is made 
 A POST request made for each successful `Get`.  Each POST can also be made with unique parameters avialble in the item.
 
 
-## Configuration Options
-Each of the requests above can be configured with these options.  
+## Request Configuration
+Each of the requests above can be configured with these options.  The following options are executed sequentially for each request.
+
 
 #### `request`
 - `{}`
@@ -51,7 +58,27 @@ Complete is the last step for each `request`.  Here, we can translate and format
         
 By default, the entire response is passed.
 
-Example Configuration File
+
+## <a name="options"></a>Options
+Available in the configuration file or the CLI.
+
+#### `Parallel`
+Executes the item requests in Parallel instead of Series.  For individual items, GET and POST will still execute sequentially.
+- Config File: `parallel: true`
+- CLI: `nansen -p <config_file>`
+
+#### `Verbose`
+Logs all the request steps as they occur. 
+- Config File: `verbose: true`
+- CLI: `nansen -V <config_file>`
+
+#### `Debug`
+Logs all the request responses and other extranious information.
+- Config File: `debug: true`
+- CLI: `nansen -d <config_file>`
+
+
+<a name="example"></a>Example Configuration File
 ----
 ```javascript
 // Configuration File for 'Moves Connector'
