@@ -88,9 +88,9 @@ modules.exports = {
 
     // Options
     name: 'MovesConnector',
-    verbose: true,              // Log the requests for each item
-    debug: true,                // Log the request responses and other extra info
-    parallel: true,             // Execute all items in parallel
+    verbose: true,           // Log the requests for each item
+    debug: true,             // Log the request responses and other extra info
+    parallel: true,          // Execute all items in parallel
 
 
     // 1.  Setup request configuration
