@@ -20,10 +20,10 @@ var set = function(param, value) {
 
 program
   .usage('[options] <config_file>')
-  .option('-v, --version', 'output of the version number', version)
-  .option('-V, --verbose', 'Verbose Logging', function(){ set('verbose', true) })
+  .option('-v, --verbose', 'Verbose Logging', function(){ set('verbose', true) })
   .option('-d, --debug', 'Log debug info', function(){ set('debug', true) })
-  .option('-p, --parallel', 'Process Get and Post requests in Parallel', function(){ set('parallel', true) });
+  .option('-p, --parallel', 'Process Get and Post requests in Parallel', function(){ set('parallel', true) })
+  .option('-V, --version', 'output of the version number', version);
 
 
 program.parse(process.argv);

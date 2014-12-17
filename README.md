@@ -72,7 +72,7 @@ Executes the item requests in Parallel instead of Series.  For individual items,
 #### `Verbose`
 Logs all the request steps as they occur. 
 - Config File: `verbose: true`
-- CLI: `nansen -V <config_file>`
+- CLI: `nansen -v <config_file>`
 
 #### `Debug`
 Logs all the request responses and other extranious information.
@@ -182,10 +182,6 @@ modules.exports = {
                 }
             });
         },
-
-
     },
-
 }
-
 ```
