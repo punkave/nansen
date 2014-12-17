@@ -9,7 +9,7 @@ Nansen is a node.js module for processing APIs.
 
 
 ## <a name="config"></a>Configuration File
-The configuration for each application is a javascript file that exports a function with required properties `setup`, `get`, and `post`.  Nansen is run from the command line, and initiating a new api task will be as simple as passing the configration into nansen.
+The configuration for each application is a javascript file that exports a function with required properties `setup`, `get`, and `post`.  Nansen is run from the command line, and initiating a new api task is as simple as passing the configration into nansen.
 
 ```bash
 npm install -g nansen
