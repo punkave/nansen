@@ -1,8 +1,7 @@
 {
   "name": "nansen",
-  "version": "0.0.14",
+  "version": "0.0.15",
   "description": "Nansen is a tool for consuming APIs.",
-  "main": "index.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/punkave/nansen"
