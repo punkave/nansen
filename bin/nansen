@@ -17,29 +17,31 @@ var version = function(){
 var set = function(param, value) {
   options[param] = value;
 }
+var setParallel = function(value) {
+  options.parallel = value;
+}
 
 program
   .usage('[options] <config_file>')
   .option('-v, --verbose', 'Verbose Logging', function(){ set('verbose', true) })
   .option('-d, --debug', 'Log debug info', function(){ set('debug', true) })
-  .option('-p, --parallel', 'Process Get and Post requests in Parallel', function(){ set('parallel', true) })
-  .option('-V, --version', 'output of the version number', version);
+  .option('-p, --parallel [value]', 'Process Get and Post requests in Parallel', setParallel )
+  .option('-V, --version', 'output of the version number', version)
+  .parse(process.argv);
 
 
-program.parse(process.argv);
 
 if (process.argv.length <= 2) {
   program.help();
 
-} else if (process.argv.length > 2){
+} else {
 
-  for(var i=2; i < process.argv.length; i++) {
-    if (process.argv[i].indexOf('-') == 0) { continue; }
+  for(var i=0; i < program.args.length; i++) {
     try{
-      var config = require(path.dirname(fs.realpathSync(process.argv[i])) + '/' + process.argv[i].split('/').pop());
+      var config = require(path.dirname(fs.realpathSync(program.args[i])) + '/' + program.args[i].split('/').pop());
       nansen.job(config, options);
     } catch(e){
-      console.log(("\nError reading config file ").red + process.argv[i]);
+      console.log(("\nError reading config file ").red + program.args[i]);
       console.log("\n" + e + "\n");
     }
   }
