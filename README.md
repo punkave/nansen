@@ -66,8 +66,8 @@ Available in the configuration file or the CLI.
 
 #### `Parallel`
 Executes the item requests in Parallel instead of Series.  For individual items, GET and POST will still execute sequentially.
-- Config File: `parallel: true`
-- CLI: `nansen -p <config_file>`
+- Config File: `parallel: [value]`
+- CLI: `nansen -p [value] <config_file>`
 
 #### `Verbose`
 Logs all the request steps as they occur. 
@@ -90,7 +90,7 @@ modules.exports = {
     name: 'MovesConnector',
     verbose: true,           // Log the requests for each item
     debug: true,             // Log the request responses and other extra info
-    parallel: true,          // Execute all items in parallel
+    parallel: 3,             // Process 3 items in parallel
 
 
     // 1.  Setup request configuration
