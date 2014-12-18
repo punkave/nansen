@@ -1,6 +1,6 @@
 {
   "name": "nansen",
-  "version": "0.0.17",
+  "version": "0.0.18",
   "description": "Nansen is a tool for consuming APIs.",
   "repository": {
     "type": "git",
