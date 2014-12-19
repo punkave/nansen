@@ -74,6 +74,11 @@ Logs all the request steps as they occur.
 - Config File: `verbose: true`
 - CLI: `nansen -v <config_file>`
 
+#### `Progress`
+Show progress bar during job process.
+- Config File: `progress: true`
+- CLI: `nansen -P <config_file>`
+
 #### `Debug`
 Logs all the request responses and other extranious information.
 - Config File: `debug: true`
@@ -91,6 +96,7 @@ modules.exports = {
     verbose: true,           // Log the requests for each item
     debug: true,             // Log the request responses and other extra info
     parallel: 3,             // Process 3 items in parallel
+    progress: true,          // Show progress bar during job process
 
 
     // 1.  Setup request configuration

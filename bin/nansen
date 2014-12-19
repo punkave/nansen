@@ -25,8 +25,9 @@ program
   .usage('[options] <config_file>')
   .option('-v, --verbose', 'Verbose Logging', function(){ set('verbose', true) })
   .option('-d, --debug', 'Log debug info', function(){ set('debug', true) })
-  .option('-p, --parallel [value]', 'Process Get and Post requests in Parallel', setParallel )
-  .option('-V, --version', 'output of the version number', version)
+  .option('-p, --parallel [value] ', 'Process item requests in parallel', setParallel )
+  .option('-P, --progress', 'Show progress bar during job', function(){ set('progress', true) })
+  .option('-V, --version', 'Output the version number', version)
   .parse(process.argv);
 
 
