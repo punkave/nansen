@@ -91,8 +91,9 @@ Logs all the request responses and other extranious information.
 // Configuration File for 'Moves Connector'
 modules.exports = {
 
+    name: 'ExampleConfig',
+
     // Options
-    name: 'MovesConnector',
     verbose: true,           // Log the requests for each item
     debug: true,             // Log the request responses and other extra info
     parallel: 3,             // Process 3 items in parallel
@@ -105,9 +106,9 @@ modules.exports = {
         // The 'request' object follows the schema of node-request options.
         request: {
             method: 'get',
-            url: 'https://my.waytohealth.upenn.edu/pedometer',
+            url: 'https://myapi.com/data',
             headers: {
-                'Client-Auth-Key': '<key>';
+                'Client-Auth-Key': 'mykey';
             },
         },
         
@@ -141,22 +142,11 @@ modules.exports = {
 
             callback(null, {
                 method: 'get',
-                url: 'https://api.moves-app.com/api/v1/user/summary/daily',
-                params: {
-                    from: item.lastdatum
-                    to: moment('Y-m-d')
-                },
+                url: 'https://myapi.com/v1/item/' + item.id,
                 headers: {
                     'Authorization': 'Bearer ' + item.apidata.access_token
                 }
             });
-        },
-
-        // Handling for errors returned in the response header
-        errors: {
-            HTTP_429: function(res, callback) {
-                // too many requests, sleep.
-            }
         },
 
         complete: function(res, callback) {
@@ -176,12 +166,10 @@ modules.exports = {
 
             callback(null, {
                 method: 'post',
-                url: 'https://my.waytohealth.upenn.edu/pedometer',
+                url: 'https://myapi.com/v1/results/' + item.id,
                 params: {
-                    study_user_id: item.study_user_id,
+                    user_id: item.user_id,
                     source_id: item.source_id,
-                    connector_group: 'MovesConnector',
-                    info: response
                 },
                 headers: {
                     'Authorization': 'Bearer ' + item.apidata.access_token
