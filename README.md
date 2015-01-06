@@ -1,4 +1,4 @@
-# Nansen
+# Nansen [![Build Status](https://secure.travis-ci.org/punkave/nansen.png?branch=master)](http://travis-ci.org/punkave/nansen)
 
 Nansen is a node.js module for processing APIs.
 
