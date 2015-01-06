@@ -1,4 +1,4 @@
 test:
-	@./node_modules/.bin/mocha -t 9000
+	sh ./test/testlocal.sh
 
 .PHONY: test

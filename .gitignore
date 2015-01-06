@@ -10,6 +10,4 @@ pids
 node_modules
 examples
 
-test.js
-
 .DS_Store

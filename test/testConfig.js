@@ -5,10 +5,10 @@ module.exports = {
 
 		request: {
 			method: 'GET',
-			uri: 'http://jsonplaceholder.typicode.com'
+			uri: 'http://localhost:3000'
 		},
 		complete: function(res, callback) {
-			callback(null, [{uri: 'http://jsonplaceholder.typicode.com/posts/1'}, {uri: 'http://jsonplaceholder.typicode.com/posts/2'}, {uri: 'http://jsonplaceholder.typicode.com/posts/3'}]);
+			callback(null, [{uri: 'http://localhost:3000/posts/1'}, {uri: 'http://localhost:3000/posts/2'}, {uri: 'http://localhost:3000/posts/3'}]);
 		}
 	},
 
@@ -27,7 +27,7 @@ module.exports = {
 
 			callback(null, {
 				method: 'POST',
-				uri: 'http://jsonplaceholder.typicode.com/posts',
+				uri: 'http://localhost:3000/posts',
 				data: {
                   title: 'foo',
                   body: 'bar',
