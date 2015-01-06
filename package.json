@@ -20,5 +20,8 @@
   },
   "bin": {
     "nansen": "bin/nansen"
+  },
+  "scripts": {
+    "test": "mocha"
   }
 }

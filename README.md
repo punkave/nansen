@@ -101,7 +101,7 @@ modules.exports = {
 
 
     // 1.  Setup request configuration
-    self.setup: {
+    setup: {
     
         // The 'request' object follows the schema of node-request options.
         request: {
