@@ -88,7 +88,6 @@ Logs all the request responses and other extranious information.
 <a name="example"></a>Example Configuration File
 ----
 ```javascript
-// Configuration File for 'Moves Connector'
 modules.exports = {
 
     name: 'ExampleConfig',
