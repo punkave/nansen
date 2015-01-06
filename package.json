@@ -21,7 +21,10 @@
   "bin": {
     "nansen": "bin/nansen"
   },
+  "devDependencies": {
+    "mocha": "0.3.x"
+  },
   "scripts": {
-    "test": "mocha"
+    "test": "make test"
   }
 }
