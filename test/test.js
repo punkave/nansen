@@ -22,7 +22,6 @@ describe('Nansen', function() {
       nansen.job(config, {verbose: true, parellel: 3});
     });
     it('consume test api', function(done) {
-      this.timeout(9000);
       nansen.run( function(e) {
         assert.ifError(e);
         return done();

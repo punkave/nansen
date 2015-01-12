@@ -1,6 +1,6 @@
 module.exports = {
 
-	name: 'TestConfig',
+	name: 'Local Test',
 	setup: {
 
 		request: {
